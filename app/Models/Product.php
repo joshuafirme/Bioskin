@@ -28,6 +28,7 @@ class Product extends Model
         'packaging',
         'cap_id',
         'caps',
+        'images',
 
     ];
 
@@ -37,6 +38,7 @@ class Product extends Model
         'volumes' => 'array',
         'packaging' => 'array',
         'caps' => 'array',
+        'images' => 'array',
     ];
 
 }

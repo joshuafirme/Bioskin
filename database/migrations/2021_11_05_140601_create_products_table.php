@@ -16,9 +16,10 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('sku')->unique();
+            $table->string('name');
             $table->decimal('price');
             $table->text('description');
-            $table->text('features');
+            $table->text('features')->nullable();
             $table->text('directions_and_precautions')->nullable();
             $table->text('ingredients')->nullable();
             $table->integer('category_id');
@@ -33,6 +34,7 @@ class CreateProductsTable extends Migration
             $table->json('packaging')->nullable();
             $table->integer('cap_id')->nullable();
             $table->json('caps')->nullable();
+            $table->json('images')->nullable();
             $table->timestamps();
         });
     }

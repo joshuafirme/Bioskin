@@ -55,9 +55,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light" style="font-size: 16px;">Val Construction Supply</span>
+    <a href="#" class="brand-link">
+      <img src="{{asset('images/logo.png')}}" alt="AdminLTE Logo" class="brand-image " style="opacity: 1;">
+      <span class="brand-text font-weight-light" style="font-size: 16px;">Admin Panel</span>
     </a>
 
     <!-- Sidebar -->
@@ -102,9 +102,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/supplier') }}" class="nav-link">
+                <a href="{{ url('/subcategory') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Supplier</p>
+                  <p>Packaging</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/subcategory') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cap</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -114,15 +120,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/unit') }}" class="nav-link">
+                <a href="{{ url('/subcategory') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Unit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('/delivery_area') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Delivery Area</p>
+                  <p>Sub Category</p>
                 </a>
               </li>
             </ul>

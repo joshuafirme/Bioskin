@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Subategory;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index');
+        $category = Category::paginate(10);
+
+        return view('admin.category.index', compact('category'));
     }
 
     /**
@@ -25,8 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.products.create', compact('categories'));
+        return view('admin.category.create');
     }
 
     /**
@@ -37,26 +38,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $images=array();
-        
+        $request->validate([
+            'name' => 'required|unique:category',
+        ]);
 
-        if($files=$request->file('images')){
-            foreach($files as $file){
-                $folder_to_save = 'product';
-                $image_name = uniqid() . "." . $file->extension();
-              //  $file->move(public_path('images/' . $folder_to_save), $image_name);
-                $images[] = $folder_to_save . "/" . $image_name;
-            }
-        }
-        $variation_arr = array();
+        Category::create($request->all());
 
-        foreach($request->variations as $key =>  $variation){
-            $key++;
-            $variation_arr[$key] = $variation;
-        }
-        $request->variations = $variation_arr;
-
-        return $request->all();
+        return redirect()->back()
+            ->with('success', 'category was created.');
     }
 
     /**
@@ -76,9 +65,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -90,9 +79,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required:category',
+        ]);
 
+        Category::where('id', $id)->update([
+            'name' => $request->input('name'),
+            'status' => 1
+        ]);
+
+        return redirect()->back()
+            ->with('success', 'Category was updated.');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -101,6 +99,17 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        if ($category->delete()) {
+            return response()->json([
+                'status' =>  'success',
+                'message' => 'Category was deleted.'
+            ], 200);
+        }
+
+        return response()->json([
+            'status' =>  'error',
+            'message' => 'Deleting category failed.'
+        ], 200);
     }
 }

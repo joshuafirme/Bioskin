@@ -19,7 +19,7 @@
 <!-- /.content-wrapper -->
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2021 Bioskin.</strong>
+    <strong>Copyright &copy; 2021 Val Construction Supply.</strong>
     All rights reserved.
   </footer>
 
@@ -27,15 +27,7 @@
 <!-- ./wrapper -->
 
 @include('admin.scripts')
-@include('admin.datatables-scripts')
-<script src="{{asset('js/verify_customer.js')}}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var multipleCancelButton = new Choices('.choices-multiple', {
-        removeItemButton: true,
-      });
-    });
-  </script>
-
+@include('partials._modals')
+@include('partials._global_scripts')
 </body>
 </html>

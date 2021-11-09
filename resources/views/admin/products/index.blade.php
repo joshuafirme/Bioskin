@@ -3,7 +3,7 @@
 @section('content')
 
 @php
-    $page_title = "VCS | Product Maintenance";
+    $page_title = "Bioskin | Product Maintenance";
 @endphp
 
 <div class="content-header"></div>
@@ -47,15 +47,15 @@
                     <table class="table table-bordered table-striped table-hover tbl-product" id="product-table">
                         <thead>
                             <tr>
-                                <th>Product Code</th>
-                                <th>Description</th>
-                                <th>Qty</th>
-                                <th>Reorder point</th>
-                                <th>Unit</th>
+                                <th>SKU</th>
+                                <th>Name</th>
                                 <th>Category</th>
-                                <th>Supplier</th>
-                                <th>Original Price</th>
-                                <th>Selling Price</th>
+                                <th>Sub category</th>
+                                <th>Variations</th>
+                                <th>Size</th>
+                                <th>Volume</th>
+                                <th>Packaging</th>
+                                <th>Cap</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
