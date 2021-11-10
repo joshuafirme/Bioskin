@@ -1,17 +1,17 @@
-@extends('admin.category.layout')
+@extends('admin.closures.layout')
 
 @section('content')
 
 @php
-    $page_title = "Bioskin | Create category";
+    $page_title = "Bioskin | Create Closure";
 @endphp
 
 <div class="content-header"></div>
 
     <div class="page-header mb-3">
-        <h3 class="mt-2" id="page-title">Create category</h3>
+        <h3 class="mt-2" id="page-title">Create Closure</h3>
         <hr>
-        <a href="{{ route('category.index') }}" class="btn btn-secondary btn-sm"><span class='fas fa-arrow-left'></span></a>
+        <a href="{{ route('closures.index') }}" class="btn btn-secondary btn-sm"><span class='fas fa-arrow-left'></span></a>
     </div>
 
         @if(count($errors)>0)
@@ -47,28 +47,27 @@
           <div class="col-sm-12 col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('category.store') }}" method="POST">
+                    <form action="{{ route('closures.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                <label class="col-form-label">Category Name</label>
+                                <label class="col-form-label">Closure Name</label>
                                 <input type="text" class="form-control" name="name"  id="name" required>
                             </div>
 
-                           <!-- <div class="col-sm-12 col-md-6 mb-2">    
-                              <label class="col-form-label">Status</label>
-                              <select class="form-control" name="status" id="status">
-                                  <option selected value="1">Active</option>
-                                  <option value="0">Inactive</option>
-                              </select>
-                            </div>-->
+                            <div class="col-sm-12 col-md-6">
+                                <label class="col-form-label">Packaging</label>
+                                <select class="form-control" name="packaging_id">
+                                    @foreach ($packaging as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
     
                               <div class="col-12 mt-4">
                                 <button type="submit" class="btn btn-sm btn-primary mr-2" id="btn-add-user">Save</button>
-                                <a href="{{ route('category.index') }}" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</a>
+                                <a href="{{ route('closures.index') }}" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</a>
                               </div>
-                              
-                
                         </div>
                     </form>
                 </div>

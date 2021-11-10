@@ -43,6 +43,9 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
+      <li class="nav-item">
+        <a href="{{ url('/') }}" target="_blank" aria-haspopup="true" aria-expanded="false" class="nav-link">View website</a>
+      </li>
       <li class="nav-item dropdown">
         <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Josh</a>
         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
@@ -102,15 +105,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/subcategory') }}" class="nav-link">
+                <a href="{{ url('/packaging') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Packaging</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/subcategory') }}" class="nav-link">
+                <a href="{{ url('/closures') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Cap</p>
+                  <p>Closures</p>
                 </a>
               </li>
               <li class="nav-item">

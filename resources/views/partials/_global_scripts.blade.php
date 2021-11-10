@@ -26,7 +26,7 @@
                 if(result.status == "success"){
                     $("#record-id-"+id).fadeOut(100);
                     $.toast({
-                        text: 'Category was successfully deleted.',
+                        text: object+' was successfully deleted.',
                         showHideTransition: 'plain',
                         hideAfter: 5000, 
                     });

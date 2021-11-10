@@ -44,7 +44,7 @@
           <div class="col-md-12 col-lg-12 mt-3">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-bordered table-striped table-hover tbl-product" id="product-table">
+                    <table class="table table-bordered table-striped table-hover" id="tbl-product">
                         <thead>
                             <tr>
                                 <th>SKU</th>
@@ -53,9 +53,10 @@
                                 <th>Sub category</th>
                                 <th>Variations</th>
                                 <th>Size</th>
+                                <th>Price</th>
                                 <th>Volume</th>
                                 <th>Packaging</th>
-                                <th>Cap</th>
+                                <th>Closure</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

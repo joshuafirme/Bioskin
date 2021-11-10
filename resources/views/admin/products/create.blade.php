@@ -58,6 +58,21 @@
                   <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                       @csrf
                       <div class="row">
+
+                        <div class="col-sm-12 col-md-6 mt-2">
+                          <label class="col-form-label">Category</label>
+                            <select class="form-control" name="category_id">
+                              @foreach ($categories as $item)
+                                  <option value="{{ $item->id }}">{{ $item->name }}</option>
+                              @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 mt-2">
+                          <label class="col-form-label">Sub Category</label>
+                            <select class="form-control" name="sub_category_id">
+                            </select>
+                        </div>
                           <div class="col-sm-12 col-md-6 mt-2">
                             <label class="col-form-label">SKU</label>
                             <input type="text" class="form-control" name="sku" required>
@@ -84,23 +99,12 @@
                           </div>
 
                           <div class="col-sm-12 col-md-6 mt-2">
-                            <label class="col-form-label">Category</label>
-                              <select class="form-control" name="category_id">
+                            <label class="col-form-label">Variation</label>
+                              <select class="form-control" name="variation_id">
                                 @foreach ($categories as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                               </select>
-                          </div>
-
-                          <div class="col-sm-12 col-md-6 mt-2">
-                            <label class="col-form-label">Sub Category</label>
-                              <select class="form-control" name="sub_category_id">
-                              </select>
-                          </div>
-
-                          <div class="col-sm-12 col-md-6 mt-sm-2">
-                            <label class="col-form-label">Price</label>
-                            <input type="number" step="any" class="form-control" name="price" required>
                           </div>
 
                           <div class="col-sm-12 col-md-6 mt-sm-2">
@@ -112,7 +116,12 @@
                               </select>
                           </div>
 
-                          <div class="col-sm-12 col-md-6 mt-2">
+                          <div class="col-sm-12 col-md-6 mt-sm-2">
+                            <label class="col-form-label">Price</label>
+                            <input type="number" step="any" class="form-control" name="price" required>
+                          </div>
+
+                          <div class="col-sm-12 col-md-6 mt-2 packaging">
                             <label class="col-form-label" for="choices-multiple-remove-button">Packaging</label>
                               <select class="form-control" name="packaging_id">
                                 <option value="90g" selected>Round Bottle Clear</option>
@@ -121,8 +130,8 @@
                               </select>
                           </div>
 
-                          <div class="col-sm-12 col-md-6 mt-sm-2 mt-md-3">
-                            <label class="col-form-label" for="choices-multiple-remove-button">Cap</label>
+                          <div class="col-sm-12 col-md-6 mt-sm-2 packaging">
+                            <label class="col-form-label" for="choices-multiple-remove-button">Closure</label>
                               <select class="form-control" name="cap_id">
                                 <option value="Fliptop Cap White 60ml" selected>Fliptop Cap White 60ml</option>
                                 <option value="Fliptop Cap Black 100ml">Fliptop Cap Black 100ml</option>
@@ -139,6 +148,14 @@
                                 <option value="300">300 pieces</option>
                                 <option value="400">400 pieces</option>
                               </select>
+                          </div>
+
+                          <div class="col-sm-12 mt-3">
+                              
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="rebranding" id="rebranding" value="1">
+                            <label class="form-check-label" for="exampleCheck1">Rebranding</label>
+                          </div>
                           </div>
 
                        <!--   <div class="col-sm-12 col-md-6 mt-2">

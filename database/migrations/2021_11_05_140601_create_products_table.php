@@ -35,6 +35,7 @@ class CreateProductsTable extends Migration
             $table->integer('cap_id')->nullable();
             $table->json('caps')->nullable();
             $table->json('images')->nullable();
+            $table->tinyInteger('rebranding')->default(0);
             $table->timestamps();
         });
     }

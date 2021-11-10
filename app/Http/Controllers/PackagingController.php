@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Category;
+use App\Models\Packaging;
 
-class ProductController extends Controller
+class PackagingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index');
+        $packaging = Packaging::paginate(10);
+        return view('admin.packaging.index', compact('packaging'));
     }
 
     /**
@@ -25,8 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.products.create', compact('categories'));
+        return view('admin.packaging.create');
     }
 
     /**
@@ -37,19 +36,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $images=array();
-        
+        $request->validate([
+            'name' => 'required|unique:packaging',
+        ]);
 
-        if($files=$request->file('images')){
-            foreach($files as $file){
-                $folder_to_save = 'product';
-                $image_name = uniqid() . "." . $file->extension();
-              //  $file->move(public_path('images/' . $folder_to_save), $image_name);
-                $images[] = $folder_to_save . "/" . $image_name;
-            }
-        }
+        Packaging::create($request->all());
 
-        return $request->all();
+        return redirect()->back()
+            ->with('success', 'Packaging was created.'); $request->validate([
+            'name' => 'required|unique:packaging',
+        ]);
     }
 
     /**
@@ -69,9 +65,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Packaging $packaging)
     {
-        //
+        return view('admin.packaging.edit', compact('packaging'));
     }
 
     /**
@@ -83,7 +79,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required:packaging',
+        ]);
+
+        Packaging::where('id', $id)->update(['name' => $request->input('name')]);
+
+        return redirect()->back()
+            ->with('success', 'Packaging name was updated.');
     }
 
     /**
@@ -94,6 +97,17 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $packaging = Packaging::findOrFail($id);
+        if ($packaging->delete()) {
+            return response()->json([
+                'status' =>  'success',
+                'message' => 'Packaging was deleted.'
+            ], 200);
+        }
+
+        return response()->json([
+            'status' =>  'error',
+            'message' => 'Deleting packaging failed.'
+        ], 200);
     }
 }
