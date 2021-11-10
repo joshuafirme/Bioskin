@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Category;
-use App\Models\Packaging;
-use App\Models\Size;
 use App\Models\Variation;
 
-class ProductController extends Controller
+class VariationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index');
+        $variations = Variation::paginate(10);
+        return view('admin.variations.index', compact('variations'));
     }
 
     /**
@@ -28,11 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $packaging = Packaging::all();
-        $sizes = Size::all();
-        $variations = Variation::all();
-        return view('admin.products.create', compact('categories', 'packaging', 'sizes', 'variations'));
+        return view('admin.variations.create');
     }
 
     /**
@@ -43,19 +36,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $images=array();
-        
+        $request->validate([
+            'name' => 'required|unique:variations',
+        ]);
 
-        if($files=$request->file('images')){
-            foreach($files as $file){
-                $folder_to_save = 'product';
-                $image_name = uniqid() . "." . $file->extension();
-              //  $file->move(public_path('images/' . $folder_to_save), $image_name);
-                $images[] = $folder_to_save . "/" . $image_name;
-            }
-        }
+        Variation::create($request->all());
 
-        return $request->all();
+        return redirect()->back()
+            ->with('success', 'Variation attribute was created.'); $request->validate([
+            'name' => 'required|unique:variations',
+        ]);
     }
 
     /**
@@ -75,9 +65,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Variation $variation)
     {
-        //
+        return view('admin.variations.edit', compact('variation'));
     }
 
     /**
@@ -89,7 +79,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required:variations',
+        ]);
+
+        Variation::where('id', $id)->update(['name' => $request->input('name')]);
+
+        return redirect()->back()
+            ->with('success', 'Variation attribute was updated.');
     }
 
     /**
@@ -100,6 +97,17 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $variation = Variation::findOrFail($id);
+        if ($variation->delete()) {
+            return response()->json([
+                'status' =>  'success',
+                'message' => 'Variation attribute was deleted.'
+            ], 200);
+        }
+
+        return response()->json([
+            'status' =>  'error',
+            'message' => 'Deleting failed.'
+        ], 200);
     }
 }

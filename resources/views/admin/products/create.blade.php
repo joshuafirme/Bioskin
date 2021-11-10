@@ -98,44 +98,21 @@
                             <textarea type="text" class="form-control" name="ingredients" rows="4"></textarea>
                           </div>
 
-                          <div class="col-sm-12 col-md-6 mt-2">
-                            <label class="col-form-label">Variation</label>
-                              <select class="form-control" name="variation_id">
-                                @foreach ($categories as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                          <div class="col-sm-12 col-md-6 mt-sm-2 mt-md-3">
+                              <label for="choices-single-default">Variation</label>
+                              <select class="form-control" data-trigger  name="variation_id">
+                                @foreach ($variations as $item)
+                                  <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                               </select>
                           </div>
 
-                          <div class="col-sm-12 col-md-6 mt-sm-2">
-                            <label class="col-form-label" for="choices-multiple-remove-button">Size</label>
-                              <select class="form-control" name="size_id">
-                                <option value="90g" selected>90g</option>
-                                <option value="90g">135g</option>
-                                <option value="30ml">30ml</option>
-                              </select>
-                          </div>
-
-                          <div class="col-sm-12 col-md-6 mt-sm-2">
-                            <label class="col-form-label">Price</label>
-                            <input type="number" step="any" class="form-control" name="price" required>
-                          </div>
-
-                          <div class="col-sm-12 col-md-6 mt-2 packaging">
-                            <label class="col-form-label" for="choices-multiple-remove-button">Packaging</label>
-                              <select class="form-control" name="packaging_id">
-                                <option value="90g" selected>Round Bottle Clear</option>
-                                <option value="90g">Glass Bottle Green</option>
-                                <option value="30ml">Cream Jar</option>
-                              </select>
-                          </div>
-
-                          <div class="col-sm-12 col-md-6 mt-sm-2 packaging">
-                            <label class="col-form-label" for="choices-multiple-remove-button">Closure</label>
-                              <select class="form-control" name="cap_id">
-                                <option value="Fliptop Cap White 60ml" selected>Fliptop Cap White 60ml</option>
-                                <option value="Fliptop Cap Black 100ml">Fliptop Cap Black 100ml</option>
-                                <option value="Own Packaging">Own Packaging</option>
+                          <div class="col-sm-12 col-md-6 mt-sm-2 mt-md-3">
+                              <label for="choices-single-default">Size</label>
+                              <select class="form-control" data-trigger  name="size_id">
+                                @foreach ($sizes as $item)
+                                  <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
                               </select>
                           </div>
 
@@ -150,6 +127,29 @@
                               </select>
                           </div>
 
+                          <div class="col-sm-12 col-md-6 mt-2 packaging">
+                            <label class="col-form-label" for="choices-multiple-remove-button">Packaging</label>
+                              <select class="form-control" name="packaging_id">
+                                @foreach ($packaging as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                              </select>
+                          </div>
+
+                          <div class="col-sm-12 col-md-6 mt-sm-2 packaging">
+                            <label class="col-form-label" for="choices-multiple-remove-button">Closure</label>
+                              <select class="form-control" name="cap_id">
+                                <option value="Fliptop Cap White 60ml" selected>Fliptop Cap White 60ml</option>
+                                <option value="Fliptop Cap Black 100ml">Fliptop Cap Black 100ml</option>
+                                <option value="Own Packaging">Own Packaging</option>
+                              </select>
+                          </div>
+
+                          <div class="col-sm-12 col-md-6 mt-sm-2">
+                            <label class="col-form-label">Price</label>
+                            <input type="number" step="any" class="form-control" name="price" required>
+                          </div>
+
                           <div class="col-sm-12 mt-3">
                               
                           <div class="form-check">
@@ -158,50 +158,8 @@
                           </div>
                           </div>
 
-                       <!--   <div class="col-sm-12 col-md-6 mt-2">
-                            <label class="col-form-label" for="choices-multiple-remove-button">Variations</label>
-                              <select class="form-control choices-multiple" name="variations[]" placeholder="Add more variation"
-                                multiple>
-                                <option value="Dropdown item 1" selected>Dropdown item 1</option>
-                                <option value="Dropdown item 2">Dropdown item 2</option>
-                                <option value="Dropdown item 3">Dropdown item 3</option>
-                                <option value="Dropdown item 4">Dropdown item 4</option>
-                              </select>
-                          </div>
-
-                          <div class="col-sm-12 col-md-6 mt-2">
-                            <label class="col-form-label" for="choices-multiple-remove-button">Sizes</label>
-                              <select class="form-control choices-multiple" name="sizes[]" placeholder="Add more sizes"
-                                multiple>
-                                <option value="90g" selected>90g</option>
-                                <option value="90g">135g</option>
-                                <option value="30ml">30ml</option>
-                              </select>
-                          </div>
-
-                          <div class="col-sm-12 col-md-6 mt-2">
-                            <label class="col-form-label" for="choices-multiple-remove-button">Packaging</label>
-                              <select class="form-control choices-multiple" name="packaging[]" placeholder="Add more packaging"
-                                multiple>
-                                <option value="90g" selected>90g</option>
-                                <option value="90g">135g</option>
-                                <option value="30ml">30ml</option>
-                              </select>
-                          </div>
-
-                          <div class="col-sm-12 col-md-6 mt-2">
-                            <label class="col-form-label" for="choices-multiple-remove-button">Caps</label>
-                              <select class="form-control choices-multiple" name="caps[]" placeholder="Add more caps"
-                                multiple>
-                                <option value="90g" selected>90g</option>
-                                <option value="90g">135g</option>
-                                <option value="30ml">30ml</option>
-                              </select>
-                          </div>
-                        -->
-
                           <div class="col-sm-12 col-md-12 mt-2">
-                            <label class="col-form-label" for="choices-multiple-remove-button">Images</label>
+                            <label class="col-form-label" for="choices-multiple-remove-button">Choose multiple images</label>
                             <input required type="file" class="form-control-file" name="images[]" placeholder="address" multiple accept=".jpg,.jpeg,.png">
                           </div>
                           

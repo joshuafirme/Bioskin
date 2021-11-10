@@ -21,6 +21,12 @@ class ClosuresController extends Controller
         return view('admin.closures.index', compact('closures'));
     }
 
+    public function readClosuresByPackaging($packaging_id) {
+        $closures = new Closures;
+        return $closures->readClosuresByPackaging($packaging_id);
+    }
+    
+
     /**
      * Show the form for creating a new resource.
      *

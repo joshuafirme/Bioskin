@@ -105,6 +105,18 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{ url('/category') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/subcategory') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sub Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{ url('/packaging') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Packaging</p>
@@ -117,15 +129,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/category') }}" class="nav-link">
+                <a href="{{ url('/size') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Category</p>
+                  <p>Size</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/subcategory') }}" class="nav-link">
+                <a href="{{ url('/variation') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Sub Category</p>
+                  <p>Variation</p>
                 </a>
               </li>
             </ul>

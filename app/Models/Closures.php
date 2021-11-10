@@ -15,4 +15,8 @@ class Closures extends Model
         'name',
         'packaging_id'
     ];
+
+    public function readClosuresByPackaging($packaging_id) {
+        return $this::where('packaging_id', $packaging_id)->get();
+    }
 }

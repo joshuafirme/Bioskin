@@ -22,6 +22,11 @@ class SubcategoryController extends Controller
         return view('admin.subcategory.index', compact('subcategory'));
     }
 
+    public function readSubcategoryByCategory($category_id) {
+        $subcategory = new Subcategory;
+        return $subcategory->readSubcategoryByCategory($category_id);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

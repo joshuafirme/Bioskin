@@ -28,26 +28,7 @@
 
 @include('admin.scripts')
 @include('admin.datatables-scripts')
-<script src="{{asset('js/verify_customer.js')}}"></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-
-      var multipleCancelButton = new Choices('.choices-multiple', {
-        removeItemButton: true,
-      });
-
-      $(document).on('change','[name="category_id"]', function(){ 
-          if ($(this).find("option:selected").text() == 'Packaging') {
-            $('.packaging').hide();
-          }
-          else {
-            $('.packaging').show();
-          }
-      });
-
-});
-</script>
+<script src="{{asset('js/product.js')}}"></script>
 
 </body>
 </html>

@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Category;
-use App\Models\Packaging;
 use App\Models\Size;
-use App\Models\Variation;
 
-class ProductController extends Controller
+class SizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index');
+        $sizes = Size::paginate(10);
+        return view('admin.sizes.index', compact('sizes'));
     }
 
     /**
@@ -28,11 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $packaging = Packaging::all();
-        $sizes = Size::all();
-        $variations = Variation::all();
-        return view('admin.products.create', compact('categories', 'packaging', 'sizes', 'variations'));
+        return view('admin.sizes.create');
     }
 
     /**
@@ -43,19 +36,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $images=array();
-        
+        $request->validate([
+            'name' => 'required|unique:sizes',
+        ]);
 
-        if($files=$request->file('images')){
-            foreach($files as $file){
-                $folder_to_save = 'product';
-                $image_name = uniqid() . "." . $file->extension();
-              //  $file->move(public_path('images/' . $folder_to_save), $image_name);
-                $images[] = $folder_to_save . "/" . $image_name;
-            }
-        }
+        Size::create($request->all());
 
-        return $request->all();
+        return redirect()->back()
+            ->with('success', 'Size attribute was created.'); $request->validate([
+            'name' => 'required|unique:sizes',
+        ]);
     }
 
     /**
@@ -75,9 +65,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Size $size)
     {
-        //
+        return view('admin.sizes.edit', compact('size'));
     }
 
     /**
@@ -89,7 +79,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required:sizes',
+        ]);
+
+        Size::where('id', $id)->update(['name' => $request->input('name')]);
+
+        return redirect()->back()
+            ->with('success', 'Size attribute was updated.');
     }
 
     /**
@@ -100,6 +97,17 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $size = Size::findOrFail($id);
+        if ($size->delete()) {
+            return response()->json([
+                'status' =>  'success',
+                'message' => 'Size attribute was deleted.'
+            ], 200);
+        }
+
+        return response()->json([
+            'status' =>  'error',
+            'message' => 'Deleting failed.'
+        ], 200);
     }
 }

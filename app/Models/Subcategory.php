@@ -16,4 +16,8 @@ class Subcategory extends Model
         'category_id',
         'status'
     ];
+
+    public function readSubcategoryByCategory($category_id) {
+        return $this::where('category_id', $category_id)->get();
+    }
 }

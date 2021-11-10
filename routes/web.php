@@ -7,6 +7,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\PackagingController;
 use App\Http\Controllers\ClosuresController;
+use App\Http\Controllers\SizeController;
+use App\Http\Controllers\VariationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,10 @@ Route::get('/', [HomePageController::class, 'index']);
 Route::resource('/product', ProductController::class);
 Route::resource('/category', CategoryController::class);
 Route::resource('/subcategory', SubcategoryController::class);
+Route::get('/read-subcategory/{category_id}', [SubcategoryController::class, 'readSubcategoryByCategory']);
 Route::resource('/packaging', PackagingController::class);
 Route::resource('/closures', ClosuresController::class);
+Route::get('/read-closures/{packaging_id}', [ClosuresController::class, 'readClosuresByPackaging']);
+Route::resource('/size', SizeController::class);
+Route::resource('/variation', VariationController::class);
 
